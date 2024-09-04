@@ -17,15 +17,39 @@ const Validate = () => {
   const [passwordColor, setPasswordColor] = useState("");
   const [confirmPasswordColor, setConfirmPasswordColor] = useState("");
 
-  function validate() {
+  function validate(e) {
     e.preventDefault();
 
-    if (username.length > 8) {
+    if (username.length >= 8) {
       setErrorUsername("");
       setUserColor("green");
     } else {
-      setErrorUsername("Username must be 8 characters long.");
+      setErrorUsername("Username must be at least 8 characters long");
       setUserColor("red");
+    }
+
+    if (email.includes("@gmail.com")) {
+      setErrorEmail("");
+      setEmailColor("green");
+    } else {
+      setEmailColor("red");
+      setErrorEmail("Email should have @gmail.com");
+    }
+
+    if (password.length > 8) {
+      setErrorPassword("");
+      setPasswordColor("green");
+    } else {
+      setErrorPassword("Password should be 8 letters long");
+      setPasswordColor("red");
+    }
+
+    if (password !== "" && password === confirmPassword) {
+      setErrorConfirmPassord("");
+      setConfirmPasswordColor("green");
+    } else {
+      setErrorConfirmPassord("Password didn't match.");
+      setConfirmPasswordColor("red");
     }
   }
 
@@ -60,7 +84,7 @@ const Validate = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <p className="error">{errorConfirmPassword}</p>
+          <p className="error">{errorPassword}</p>
 
           <input
             type="password"
