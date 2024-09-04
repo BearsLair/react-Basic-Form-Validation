@@ -1,7 +1,7 @@
-import "./style.css";
+import Validate from "./Validate";
 
 function App() {
-  return <>Hi</>;
+  return <Validate />;
 }
 
 export default App;
